@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "ggit"
+version = "0.1.0"
+description = ""
+authors = ["L170489 <max.x.blasdel@kp.org>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+typer = {extras = ["all"], version = "^0.9.0"}
+rich = "^13.4.2"
+
+[tool.poetry.scripts]
+ggit = "ggit.main:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
