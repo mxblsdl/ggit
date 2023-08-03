@@ -1,8 +1,7 @@
 from pathlib import Path
-import glob
 import subprocess
 import typer
-from .helpers import check_config
+from helpers import check_config
 
 app = typer.Typer(
     help="Check all git repos",
@@ -15,7 +14,9 @@ app = typer.Typer(
 @app.command()
 def get():
     config = check_config()
-    for filename in glob.iglob(config["ROOT"] + "**/.git", recursive=True):
+
+    fp = Path(config["ROOT"]).expanduser()
+    for filename in fp.glob("**/.git"):
         parent_folder = Path(filename).parent
         res = subprocess.run(
             ["git", "-C", parent_folder, "status"], stdout=subprocess.PIPE
@@ -31,4 +32,5 @@ def echo():
 
 # TODO process results and display in table
 # Have option to discard clean statuses
-# get()
+
+typer.run(get)

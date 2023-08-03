@@ -3,14 +3,9 @@ import typer
 
 
 def create_config(config_file: Path):
-    print("No config file exists yet")
-    ans = typer.prompt("Should we create one? (Y/n)")
-
-    while ans.lower() not in ["y", "n"]:
-        ans = typer.prompt("Please reply with y or n")
-
-    if ans.lower() == "n":
-        typer.Abort()
+    typer.confirm(
+        "No config file exists yet\nShould we create one?", abort=True, default=None
+    )
 
     config_file.touch()
 
@@ -24,7 +19,7 @@ def create_config(config_file: Path):
         for line in lines:
             c.write(line + "\n")
     typer.launch(str(config_file))
-    print("Once the config file is poplulated rerun the last command")
+    print("Once the config file is populated rerun the last command")
 
 
 def check_config():
@@ -40,3 +35,4 @@ def check_config():
 
     if not config_file.exists():
         create_config(config_file)
+        raise typer.Abort()
