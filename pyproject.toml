@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "ggit"
-version = "0.1.0"
-description = ""
+version = "0.1.2"
+description = "a global git checker"
 authors = ["mxblsdl <maxblasdel@gmail.com>"]
 readme = "README.md"
 
@@ -10,7 +10,7 @@ python = "^3.11"
 typer = {extras = ["all"], version = "^0.9.0"}
 
 [tool.poetry.scripts]
-ggit = "ggit:app:app"
+ggit = "ggit.main:app"
 
 [build-system]
 requires = ["poetry-core"]
